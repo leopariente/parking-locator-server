@@ -1,0 +1,75 @@
+body {
+  font-family: Helvetica, sans-serif;
+  color: #62914B;
+  background: white;
+}
+
+#shop {
+  display: flex;
+}
+#shop > .item {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #62914B;
+  border-radius: 4px;
+  margin-right: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+#shop > .item > .price {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+#shop > .item:hover {
+  background: rgba(110, 161, 84, 0.1);
+}
+#shop > .item:active {
+  background: #62914B;
+  color: white;
+}
+
+#cart {
+  margin-top: 20px;
+}
+#cart > .item {
+  padding: 5px;
+}
+#cart > .item > span {
+  width: 100px;
+  display: inline-block;
+}
+#cart > .total {
+  margin-top: 10px;
+  padding: 5px;
+}
+#cart > .total > .label {
+  width: 200px;
+  font-weight: bold;
+}
+#cart > .total > span {
+  display: inline-block;
+}
+
+#button {
+  margin-top: 20px;
+}
+#button > button {
+  color: #62914B;
+  background: white;
+  outline: none;
+  border: 1px solid #62914B;
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+#button > button:hover {
+  background: rgba(110, 161, 84, 0.1);
+}
+#button > button:active {
+  background: #62914B;
+  color: white;
+}
