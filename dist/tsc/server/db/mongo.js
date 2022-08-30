@@ -9,7 +9,7 @@ function addMinutes(numOfMinutes, date = new Date()) {
     date.setMinutes(date.getMinutes() + numOfMinutes);
     return date;
 }
-function addParking(parking) {
+async function addParking(parking) {
     const expireAt = addMinutes(parking.minutesToLeave);
     const parkingDocument = new parkingModel_1.ParkingModel({
         lat: parking.lat,
@@ -32,13 +32,13 @@ async function getAllParkings() {
     return await parkingModel_1.ParkingModel.find();
 }
 exports.getAllParkings = getAllParkings;
-function createUser(username, password) {
-    const testUser = new userModel_1.UserModel({
+async function createUser(username, password) {
+    const newUser = new userModel_1.UserModel({
         username: username,
         password: password,
     });
     // save user to database
-    testUser.save(function (err) {
+    newUser.save(function (err) {
         if (err)
             throw err;
     });
@@ -51,14 +51,18 @@ async function authenticateUser(username, password) {
             if (err)
                 rej(err);
             if (!user)
-                res("incorrect username!");
+                rej("username or password inncorrect!");
             else {
                 // test a matching password
                 user.comparePassword(password, function (err, isMatch) {
                     if (err)
                         rej(err);
                     console.log(password, isMatch); // -> Password: true/false
-                    res("passwaord is:" + isMatch);
+                    if (isMatch) {
+                        res(user);
+                    }
+                    else
+                        rej("username or password inncorrect!");
                 });
             }
         });
