@@ -24,12 +24,18 @@ export async function addParking(parking: Parking) {
     localTime: expireAt.toLocaleTimeString(),
     licensePlate: parking.licensePlate,
     phoneNumber: parking.phoneNumber,
+    username: parking.username
   });
   parkingDocument.save();
 }
 
-export async function deleteParking(parkingId: string) {
+export async function deleteParking(parkingId: string, username: {type: String, required: true}) {
+  const parkToDelete = await ParkingModel.findOne({ _id: parkingId }) as Parking;
+  if(parkToDelete.username === username) {
   await ParkingModel.deleteOne({ _id: parkingId });
+  } else {
+    throw new Error("this is not your parking!")
+  }
 }
 
 export async function getAllParkings() {

@@ -8,6 +8,7 @@ export interface Parking {
     localTime?: { type: String };
     licensePlate: { type: String; required: false };
     phoneNumber: { type: String; required: false };
+    username: { type: String; required: true }
   }
 
   export interface User {

@@ -10,6 +10,7 @@ const ParkingSchema = new Schema<Parking>({
     localTime: {type: String},
     licensePlate: { type: String, required: false },
     phoneNumber: { type: String, required: false },
+    username: {type: String, required: true}
   });
   
   ParkingSchema.index({expireAt: 1}, {expireAfterSeconds: 0})

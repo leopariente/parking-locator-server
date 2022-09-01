@@ -13,8 +13,8 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use((0, body_parser_1.json)());
 const root = path_1.default.join(process.cwd(), 'dist');
-app.use(parkingRoute_1.parkingRoute);
 app.use(userRoute_1.userRoute);
+app.use(parkingRoute_1.parkingRoute);
 app.use(express_1.default.static(root));
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

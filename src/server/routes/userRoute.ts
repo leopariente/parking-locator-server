@@ -9,7 +9,7 @@ userRoute.post("/login", (req: Request, res: Response) => {
     authenticateUser(req.body.username, req.body.password)
     .then((user: any) => {
       const token = jwt.sign(
-        { userId: user._id, email: user.username },
+        { userId: user._id, username: user.username },
         'supersecret_dont_share',
         { expiresIn: '1h' }
       );

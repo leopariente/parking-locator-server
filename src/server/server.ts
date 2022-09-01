@@ -11,8 +11,8 @@ app.use(cors());
 app.use(json());
 const root: string = path.join(process.cwd(), 'dist');
 
+app.use(userRoute);
 app.use(parkingRoute);
-app.use(userRoute)
 app.use(express.static(root));
 
 const port = process.env.PORT || 4000;

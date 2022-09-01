@@ -1,4 +1,4 @@
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 import { Request, Response } from 'express';
 
 //@ts-ignore
@@ -8,8 +8,8 @@ export const checkAuth = (req: Request, res: Response, next: any) => {
     if (!token) {
       throw new Error('Authentication failed!');
     }
-    // const decodedToken = jwt.verify(token, 'supersecret_dont_share');
-    //req.userData = { userId: decodedToken.userId };
+    const decodedToken = jwt.verify(token, 'supersecret_dont_share');
+    req.body.username = decodedToken.username;
     next();
   } catch (err) {
     const error = new Error('Authentication failed!');

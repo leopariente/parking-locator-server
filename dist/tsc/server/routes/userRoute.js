@@ -9,7 +9,7 @@ exports.userRoute = (0, express_1.Router)();
 exports.userRoute.post("/login", (req, res) => {
     (0, mongo_1.authenticateUser)(req.body.username, req.body.password)
         .then((user) => {
-        const token = jwt.sign({ userId: user._id, email: user.username }, 'supersecret_dont_share', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id, username: user.username }, 'supersecret_dont_share', { expiresIn: '1h' });
         res.json({
             userId: user._id,
             username: user.username,
