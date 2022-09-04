@@ -12,8 +12,9 @@ exports.parkingRoute.get("/park", (req, res) => {
 exports.parkingRoute.use(checkAuth_1.checkAuth);
 //@ts-ignore
 exports.parkingRoute.post("/park", (req, res) => {
-    console.log(req.body);
-    (0, mongo_1.addParking)(req.body).then(() => res.send("added successfully!"));
+    (0, mongo_1.addParking)(req.body)
+        .then(() => res.send("added successfully!"))
+        .catch(() => res.send("Car model, Car Color and minutes to leave are mandatory!"));
 });
 exports.parkingRoute.delete("/park", (req, res) => {
     const id = req.body.id;

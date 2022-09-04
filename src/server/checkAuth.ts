@@ -1,18 +1,20 @@
-const jwt = require('jsonwebtoken');
-import { Request, Response } from 'express';
+const jwt = require("jsonwebtoken");
+import { Request, Response } from "express";
 
+// Middleware that checks auth of user next function will only run if user is authorized
 //@ts-ignore
 export const checkAuth = (req: Request, res: Response, next: any) => {
   try {
-    const token = req.headers.authorization?.split(' ')[1] // Authorization: 'Bearer TOKEN'
+    const token = req.headers.authorization?.split(" ")[1]; // Authorization: 'Bearer TOKEN'
     if (!token) {
-      throw new Error('Authentication failed!');
+      throw new Error("Authentication failed!");
     }
-    const decodedToken = jwt.verify(token, 'supersecret_dont_share');
+    // verify token with secret key and pass the username to the request
+    const decodedToken = jwt.verify(token, "supersecret_dont_share");
     req.body.username = decodedToken.username;
     next();
   } catch (err) {
-    const error = new Error('Authentication failed!');
+    const error = new Error("Authentication failed!");
     return next(error);
   }
 };
