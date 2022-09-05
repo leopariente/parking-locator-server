@@ -7,6 +7,7 @@ import {
   getPreferences,
 } from "../db/mongo";
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 // User routes, CRUD requests related to user, login, signup, get and edit user preferences
 export const userRoute = Router();
@@ -18,7 +19,7 @@ userRoute.post("/login", (req: Request, res: Response) => {
       // create json web token and send it to user
       const token = jwt.sign(
         { userId: user._id, username: user.username },
-        "supersecret_dont_share",
+        process.env.SECRET_KEY,
         { expiresIn: "1h" }
       );
       res.json({
@@ -37,7 +38,7 @@ userRoute.post("/signup", (req: Request, res: Response) => {
     .then((user: any) => {
       const token = jwt.sign(
         { userId: user._id, username: user.username },
-        "supersecret_dont_share",
+        process.env.SECRET_KEY,
         { expiresIn: "1h" }
       );
       res.json({
