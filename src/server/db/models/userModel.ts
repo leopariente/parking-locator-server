@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-const bcrypt = require("bcryptjs");
+import { Schema, model } from 'mongoose';
+const bcrypt = require('bcryptjs');
 
 // Number of salts to the password
 const SALT_WORK_FACTOR = 10;
@@ -10,11 +10,11 @@ const UserSchema = new Schema({
   preferences: JSON,
 });
 
-UserSchema.pre("save", function (next) {
+UserSchema.pre('save', function (next) {
   const user = this;
 
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified("password")) return next();
+  if (!user.isModified('password')) return next();
 
   // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err: any, salt: any) {
@@ -46,4 +46,4 @@ UserSchema.methods.comparePassword = function (
   );
 };
 
-export const UserModel = model("User", UserSchema);
+export const UserModel = model('User', UserSchema);

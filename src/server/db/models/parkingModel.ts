@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import { Parking } from "src/server/interface";
+import { Schema, model } from 'mongoose';
+import { Parking } from 'src/server/interface';
 
 const ParkingSchema = new Schema<Parking>({
   lat: { type: Number, required: true },
@@ -16,4 +16,4 @@ const ParkingSchema = new Schema<Parking>({
 // Adding an index of expiration time. Database will remove every document on their expiration date
 ParkingSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
 
-export const ParkingModel = model("Parking", ParkingSchema);
+export const ParkingModel = model('Parking', ParkingSchema);
