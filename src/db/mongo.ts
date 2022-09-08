@@ -53,13 +53,14 @@ export async function getAllParkings() {
 }
 
 export async function createUser(username: string, password: string) {
-  const newUser = new UserModel({
-    username: username,
-    password: password,
-    preferences: '',
-  });
 
   return await new Promise((res, rej) => {
+    if (!username || !password) rej('please fill all inputs!');
+    const newUser = new UserModel({
+      username: username,
+      password: password,
+      preferences: '',
+    });
     // save user to database
     newUser.save(function (err, user: any) {
       if (err) {
@@ -74,6 +75,7 @@ export async function createUser(username: string, password: string) {
 export async function authenticateUser(username: string, password: string) {
   // fetch user and test password verification
   return await new Promise((res, rej) => {
+    if (!username || !password) rej('please fill all inputs!');
     // checks if username in database
     UserModel.findOne({ username: username }, function (err: any, user: any) {
       if (err) rej(err);

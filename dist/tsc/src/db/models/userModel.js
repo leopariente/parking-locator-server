@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const mongoose_1 = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 // Number of salts to the password
 const SALT_WORK_FACTOR = 10;
 const UserSchema = new mongoose_1.Schema({
@@ -10,10 +10,10 @@ const UserSchema = new mongoose_1.Schema({
     password: { type: String, required: true },
     preferences: JSON,
 });
-UserSchema.pre("save", function (next) {
+UserSchema.pre('save', function (next) {
     const user = this;
     // only hash the password if it has been modified (or is new)
-    if (!user.isModified("password"))
+    if (!user.isModified('password'))
         return next();
     // generate a salt
     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
@@ -37,5 +37,5 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
-exports.UserModel = (0, mongoose_1.model)("User", UserSchema);
+exports.UserModel = (0, mongoose_1.model)('User', UserSchema);
 //# sourceMappingURL=userModel.js.map

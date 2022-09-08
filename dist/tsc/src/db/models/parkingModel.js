@@ -15,5 +15,5 @@ const ParkingSchema = new mongoose_1.Schema({
 });
 // Adding an index of expiration time. Database will remove every document on their expiration date
 ParkingSchema.index({ expireAt: 1 }, { expireAfterSeconds: 0 });
-exports.ParkingModel = (0, mongoose_1.model)("Parking", ParkingSchema);
+exports.ParkingModel = (0, mongoose_1.model)('Parking', ParkingSchema);
 //# sourceMappingURL=parkingModel.js.map

@@ -39,7 +39,7 @@ async function deleteParking(parkingId, username) {
         await parkingModel_1.ParkingModel.deleteOne({ _id: parkingId });
     }
     else {
-        throw new Error("this is not your parking!");
+        throw new Error('this is not your parking!');
     }
 }
 exports.deleteParking = deleteParking;
@@ -48,16 +48,18 @@ async function getAllParkings() {
 }
 exports.getAllParkings = getAllParkings;
 async function createUser(username, password) {
-    const newUser = new userModel_1.UserModel({
-        username: username,
-        password: password,
-        preferences: "",
-    });
     return await new Promise((res, rej) => {
+        if (!username || !password)
+            rej("please fill all inputs!");
+        const newUser = new userModel_1.UserModel({
+            username: username,
+            password: password,
+            preferences: '',
+        });
         // save user to database
         newUser.save(function (err, user) {
             if (err) {
-                rej("User with this username already exists! please choose a different username");
+                rej('User with this username already exists! please choose a different username');
             }
             else
                 res(user);
@@ -68,12 +70,14 @@ exports.createUser = createUser;
 async function authenticateUser(username, password) {
     // fetch user and test password verification
     return await new Promise((res, rej) => {
+        if (!username || !password)
+            rej("please fill all inputs!");
         // checks if username in database
         userModel_1.UserModel.findOne({ username: username }, function (err, user) {
             if (err)
                 rej(err);
             if (!user)
-                rej("username or password is inncorrect! Please try again!");
+                rej('username or password is inncorrect! Please try again!');
             else {
                 // test a matching password
                 user.comparePassword(password, function (err, isMatch) {
@@ -83,7 +87,7 @@ async function authenticateUser(username, password) {
                         res(user);
                     }
                     else
-                        rej("username or password is inncorrect! Please try again!");
+                        rej('username or password is inncorrect! Please try again!');
                 });
             }
         });
@@ -98,7 +102,7 @@ async function editPreferences(username, preferences) {
         userModel_1.UserModel.findOneAndUpdate(filter, update, function (err) {
             if (err)
                 rej(err);
-            res("Succesfully saved.");
+            res('Succesfully saved.');
         });
     });
 }

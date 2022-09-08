@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkAuth = void 0;
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 // Middleware that checks auth of user next function will only run if user is authorized
-//@ts-ignore
+// @ts-ignore
 const checkAuth = (req, res, next) => {
     try {
-        const token = req.headers.authorization?.split(" ")[1]; // Authorization: 'Bearer TOKEN'
+        const token = req.headers.authorization?.split(' ')[1]; // Authorization: 'Bearer TOKEN'
         if (!token) {
-            throw new Error("Authentication failed!");
+            throw new Error('Authentication failed!');
         }
         // verify token with secret key and pass the username to the request
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
@@ -17,7 +17,7 @@ const checkAuth = (req, res, next) => {
         next();
     }
     catch (err) {
-        const error = new Error("Authentication failed!");
+        const error = new Error('Authentication failed!');
         return next(error);
     }
 };

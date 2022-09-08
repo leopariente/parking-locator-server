@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Parking } from 'src/server/interface';
+import { Parking } from '../../interface';
 
 const ParkingSchema = new Schema<Parking>({
   lat: { type: Number, required: true },

@@ -13,7 +13,7 @@ require('dotenv').config();
 export const userRoute = Router();
 
 // @ts-ignore
-userRoute.post('/login', (req: Request, res: Response) => {
+userRoute.post('/login', (req: Request, res: Response, next) => {
   authenticateUser(req.body.username, req.body.password)
     .then((user: any) => {
       // create json web token and send it to user
@@ -48,7 +48,9 @@ userRoute.post('/signup', (req: Request, res: Response) => {
         token: token,
       });
     })
-    .catch((response) => res.json({ error: response }));
+    .catch((response) => {
+      res.json({ error: response });
+    });
 });
 
 // @ts-ignore

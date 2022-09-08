@@ -4,7 +4,7 @@ import { json } from 'body-parser';
 import { parkingRoute } from './routes/parkingRoute';
 import { userRoute } from './routes/userRoute';
 
-const app: Express = express();
+export const app: Express = express();
 app.use(cors());
 app.use(json());
 
