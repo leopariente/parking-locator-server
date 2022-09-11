@@ -50,7 +50,7 @@ exports.getAllParkings = getAllParkings;
 async function createUser(username, password) {
     return await new Promise((res, rej) => {
         if (!username || !password)
-            rej("please fill all inputs!");
+            rej('please fill all inputs!');
         const newUser = new userModel_1.UserModel({
             username: username,
             password: password,
@@ -71,7 +71,7 @@ async function authenticateUser(username, password) {
     // fetch user and test password verification
     return await new Promise((res, rej) => {
         if (!username || !password)
-            rej("please fill all inputs!");
+            rej('please fill all inputs!');
         // checks if username in database
         userModel_1.UserModel.findOne({ username: username }, function (err, user) {
             if (err)

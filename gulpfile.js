@@ -41,6 +41,39 @@ gulp.task('build', gulp.series(
   'tsc',
 ));
 
+// Heroku copy root files
+gulp.task('heroku-copy-root', () => {
+  return gulp.src([
+    './package.json',
+    './package-lock.json',
+    './Procfile',
+    './dist/tsc/src/server.js',
+    './dist/tsc/src/db/mongo.js',
+  ])
+    .pipe(gulp.dest('./deploy'));
+});
+
+
+// Heroku clean files
+gulp.task('heroku-clean', () => {
+  return gulp.src([
+    './deploy/server.js',
+    './deploy/db.js',
+    './deploy/Procfile',
+    './deploy/package.json',
+    './deploy/package-lock.json',
+    './deploy/dist',
+  ], { allowEmpty: true })
+    .pipe(clean());
+});
+
+// Heroku deploy
+gulp.task('deploy', gulp.series(
+  'heroku-clean',
+  'build',
+  'heroku-copy-root',
+));
+
 // Run all together
 gulp.task('default', gulp.series(
   'build',
