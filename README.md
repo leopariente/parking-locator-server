@@ -2,6 +2,8 @@
 
 parKing is a project using the MERN stack made to help you find your next parking spot! This repository is the frontend side of the app, for the backend side [click here.](https://github.com/leopariente/parking-locator-server)
 To see the deployed version [click here.](https://kingparking.herokuapp.com/)
+To see the design doc [click here.](https://docs.google.com/document/d/1bUBG2mKQZStzkvBfCfKPXFrY1MXKSgwii-XdkGH-MKw/edit?usp=sharing)
+
 ## Installation
 
 * Clone this repo and the [server repo](https://github.com/leopariente/parking-locator-server).
